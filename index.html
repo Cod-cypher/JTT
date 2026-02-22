@@ -4,6 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jade Title Services | Premium Title &amp; Escrow Solutions</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N9HZD2ZLJJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N9HZD2ZLJJ');
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vlkcwrkk9j");
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
@@ -1889,19 +1907,19 @@
 
       <div class="hero-stats" data-animate="fade-up" style="animation-delay:0.2s">
         <div class="hero-stat">
-          <span class="number">500+</span>
+          <span class="number" data-count="500" data-suffix="+">0+</span>
           <span class="label">Orders Processed</span>
         </div>
         <div class="hero-stat">
-          <span class="number">99%</span>
+          <span class="number" data-count="99" data-suffix="%">0%</span>
           <span class="label">Accuracy Rate</span>
         </div>
         <div class="hero-stat">
-          <span class="number">24hr</span>
+          <span class="number" data-count="24" data-suffix="hr">0hr</span>
           <span class="label">Turnaround</span>
         </div>
         <div class="hero-stat">
-          <span class="number">100%</span>
+          <span class="number" data-count="100" data-suffix="%">0%</span>
           <span class="label">Satisfaction</span>
         </div>
       </div>
@@ -2031,19 +2049,19 @@
           <div class="why-visual-card">
             <div class="stat-grid">
               <div class="stat-item">
-                <span class="number">500+</span>
+                <span class="number" data-count="500" data-suffix="+">0+</span>
                 <span class="label">Orders Processed</span>
               </div>
               <div class="stat-item">
-                <span class="number">99%</span>
+                <span class="number" data-count="99" data-suffix="%">0%</span>
                 <span class="label">Accuracy Rate</span>
               </div>
               <div class="stat-item">
-                <span class="number">24hr</span>
+                <span class="number" data-count="24" data-suffix="hr">0hr</span>
                 <span class="label">Turnaround Time</span>
               </div>
               <div class="stat-item">
-                <span class="number">100%</span>
+                <span class="number" data-count="100" data-suffix="%">0%</span>
                 <span class="label">Client Satisfaction</span>
               </div>
             </div>
@@ -2350,7 +2368,8 @@
             <p>Fill out the form below and we'll get back to you as soon as possible.</p>
           </div>
 
-          <form class="contact-form" action="#" method="POST">
+          <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+          <form class="contact-form" id="contactForm" action="https://script.google.com/macros/s/AKfycbz_QuBst-AFFGrnLnqLzeIEdygLAhQmaPznw3kncUOmDlYzQzx4wcHF4H8-fPp88ymL/exec" method="POST" target="hidden_iframe">
             <div class="form-row">
               <div class="form-group">
                 <label for="firstName">First Name</label>
@@ -2391,10 +2410,15 @@
               <textarea id="message" name="message" placeholder="Tell us about your needs, expected volume, timeline, or any questions you have..." required></textarea>
             </div>
 
-            <button type="submit" class="submit-btn">
-              Send Message
+            <input type="hidden" id="timestamp" name="timestamp" />
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+              <span class="btn-text">Send Message</span>
+              <span class="btn-loading" style="display:none;">Sending...</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             </button>
+
+            <div id="formStatus" style="margin-top:16px;padding:12px 16px;border-radius:8px;font-size:0.95rem;display:none;"></div>
           </form>
         </div>
 
@@ -2649,6 +2673,83 @@
     });
 
     animateElements.forEach(el => observer.observe(el));
+
+    // ========== COUNT-UP ANIMATION ==========
+    function animateCount(el, delay) {
+      const target = parseInt(el.getAttribute('data-count'), 10);
+      const suffix = el.getAttribute('data-suffix') || '';
+      const duration = 2200;
+
+      setTimeout(() => {
+        const start = performance.now();
+        let prev = -1;
+
+        function update(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          // ease-out expo — fast start, very smooth deceleration
+          const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+          const current = Math.round(eased * target);
+          if (current !== prev) {
+            el.textContent = current + suffix;
+            prev = current;
+          }
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          }
+        }
+        requestAnimationFrame(update);
+      }, delay);
+    }
+
+    function animateCountGroup(container) {
+      const nums = container.querySelectorAll('[data-count]');
+      nums.forEach((el, i) => animateCount(el, i * 150));
+    }
+
+    const countContainers = document.querySelectorAll('.hero-stats, .stat-grid');
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCountGroup(entry.target);
+          countObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    countContainers.forEach(el => countObserver.observe(el));
+
+    // ========== GOOGLE SHEETS FORM SUBMISSION ==========
+    document.getElementById('contactForm').addEventListener('submit', function() {
+      // Set the timestamp
+      document.getElementById('timestamp').value = new Date().toLocaleString();
+
+      const btn = document.getElementById('submitBtn');
+      const btnText = btn.querySelector('.btn-text');
+      const btnLoading = btn.querySelector('.btn-loading');
+      const status = document.getElementById('formStatus');
+
+      // Show loading state
+      btn.disabled = true;
+      btnText.style.display = 'none';
+      btnLoading.style.display = 'inline';
+      status.style.display = 'none';
+
+      // After a short delay, show success and reset
+      setTimeout(function() {
+        status.style.display = 'block';
+        status.style.background = '#e6f4ea';
+        status.style.color = '#1e7e34';
+        status.style.border = '1px solid #b7dfb9';
+        status.textContent = '\u2713 Message sent successfully! We\'ll get back to you soon.';
+
+        btn.disabled = false;
+        btnText.style.display = 'inline';
+        btnLoading.style.display = 'none';
+
+        document.getElementById('contactForm').reset();
+      }, 2000);
+    });
   </script>
 
 </body>
