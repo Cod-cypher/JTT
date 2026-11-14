@@ -1,0 +1,18 @@
+{%- comment -%}
+  Renders a list of FAQ items. The same data feeds the FAQPage JSON-LD in
+  schema.html, so the markup and the structured data can't drift apart.
+  include.items: array of {q, a}. include.open_first: true to expand the first.
+{%- endcomment -%}
+<div class="faq-list">
+  {%- for f in include.items %}
+  <div class="faq-item{% if forloop.first and include.open_first %} open{% endif %}">
+    <button class="faq-question" type="button" aria-expanded="{% if forloop.first and include.open_first %}true{% else %}false{% endif %}" onclick="this.setAttribute('aria-expanded',this.parentElement.classList.toggle('open'))">
+      {{ f.q }}
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="faq-answer">
+      <p>{{ f.a }}</p>
+    </div>
+  </div>
+  {%- endfor %}
+</div>

@@ -1,0 +1,24 @@
+<aside class="page-aside">
+  <div class="aside-card">
+    <h2 class="aside-heading">Our Services</h2>
+    <ul>
+      {%- for s in site.data.services %}
+      <li><a href="{{ s.url }}"{% if page.url == s.url %} aria-current="page"{% endif %}>{{ s.name }}</a></li>
+      {%- endfor %}
+    </ul>
+  </div>
+  <div class="aside-card">
+    <h2 class="aside-heading">Who We Serve</h2>
+    <ul>
+      {%- for a in site.data.audiences %}
+      <li><a href="{{ a.url }}"{% if page.url == a.url %} aria-current="page"{% endif %}>{{ a.name }}</a></li>
+      {%- endfor %}
+      <li><a href="/faq/">Frequently Asked Questions</a></li>
+    </ul>
+  </div>
+  <div class="aside-card dark">
+    <h2 class="aside-heading">Free Consultation</h2>
+    <p>Tell us about your volume, software, and timeline. No obligations, no commitments.</p>
+    <a href="/contact/" class="btn-primary">Contact Us {% include icon-arrow.html %}</a>
+  </div>
+</aside>

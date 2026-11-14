@@ -1,0 +1,13 @@
+# The four services. Names are fixed by PLAN.md section 2; do not reword them.
+- id: order-entry
+  name: Title order entry
+  url: /services/order-entry/
+- id: search-preparation
+  name: Title search preparation
+  url: /services/search-preparation/
+- id: title-examination-commitments
+  name: Title examination and commitments
+  url: /services/title-examination-commitments/
+- id: final-policies
+  name: Final policies
+  url: /services/final-policies/

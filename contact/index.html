@@ -1,0 +1,20 @@
+---
+title: "Contact Jade Title Services | Free Consultation"
+description: "Get a free consultation on outsourced title support. Call (817) 409-8408 or email info@jadetitleservices.com. We reply within 24 hours."
+page_type: ContactPage
+breadcrumb:
+  - name: "Contact"
+---
+<section class="page-hero">
+  <div class="container">
+    {% include breadcrumb.html %}
+    <h1>Get a free consultation</h1>
+    <p>Tell us your volume and the software you use. We will reply within 24 hours with how we would work your files and a per-file rate.</p>
+    <div class="hero-buttons">
+      <a href="tel:{{ site.phone_e164 }}" class="btn-primary">Call {{ site.phone }} {% include icon-arrow.html %}</a>
+      <a href="mailto:{{ site.email }}" class="btn-secondary">Email {{ site.email }} {% include icon-arrow.html %}</a>
+    </div>
+  </div>
+</section>
+
+{% include contact-form.html heading="Send us a message" %}

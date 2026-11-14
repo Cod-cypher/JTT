@@ -5,30 +5,6 @@ document.querySelectorAll('.nav-links a').forEach(link => {
   });
 });
 
-// Active nav highlighting on scroll
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-
-function setActiveNav() {
-  let current = '';
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop - 100;
-    if (window.scrollY >= sectionTop) {
-      current = section.getAttribute('id');
-    }
-  });
-
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (current && link.getAttribute('href') === '#' + current) {
-      link.classList.add('active');
-    }
-  });
-}
-
-window.addEventListener('scroll', setActiveNav);
-setActiveNav();
-
 // ========== SCROLL ANIMATIONS (IntersectionObserver) ==========
 const animateElements = document.querySelectorAll('[data-animate]');
 
@@ -46,56 +22,22 @@ const observer = new IntersectionObserver((entries) => {
 
 animateElements.forEach(el => observer.observe(el));
 
-// ========== COUNT-UP ANIMATION ==========
-function animateCount(el, delay) {
-  const target = parseInt(el.getAttribute('data-count'), 10);
-  const suffix = el.getAttribute('data-suffix') || '';
-  const duration = 2200;
-
-  setTimeout(() => {
-    const start = performance.now();
-    let prev = -1;
-
-    function update(now) {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      // ease-out expo — fast start, very smooth deceleration
-      const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-      const current = Math.round(eased * target);
-      if (current !== prev) {
-        el.textContent = current + suffix;
-        prev = current;
-      }
-      if (progress < 1) {
-        requestAnimationFrame(update);
-      }
-    }
-    requestAnimationFrame(update);
-  }, delay);
+// ========== CONVERSION EVENTS (GA4) ==========
+function track(name, params) {
+  if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
 }
-
-function animateCountGroup(container) {
-  const nums = container.querySelectorAll('[data-count]');
-  nums.forEach((el, i) => animateCount(el, i * 150));
-}
-
-const countContainers = document.querySelectorAll('.hero-stats, .stat-grid');
-const countObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      animateCountGroup(entry.target);
-      countObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.2 });
-
-countContainers.forEach(el => countObserver.observe(el));
+document.addEventListener('click', function (e) {
+  const a = e.target.closest && e.target.closest('a[href^="tel:"], a[href^="mailto:"]');
+  if (!a) return;
+  track(a.href.startsWith('tel:') ? 'phone_click' : 'email_click', { link_url: a.href, page_path: location.pathname });
+});
 
 // ========== GOOGLE SHEETS FORM SUBMISSION ==========
 const contactForm = document.getElementById('contactForm');
 if (contactForm) contactForm.addEventListener('submit', function() {
   // Set the timestamp
   document.getElementById('timestamp').value = new Date().toLocaleString();
+  track('generate_lead', { form_id: 'contactForm', page_path: location.pathname });
 
   const btn = document.getElementById('submitBtn');
   const btnText = btn.querySelector('.btn-text');
