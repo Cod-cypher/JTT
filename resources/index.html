@@ -19,7 +19,7 @@ categories: [Commitments, Final policies, Order entry, Outsourcing, Qualia, Soft
   <div class="container stack-lg">
     {%- if site.posts.size > 0 %}
     {%- assign featured = site.posts | where: "slug", page.featured | first %}{% unless featured %}{% assign featured = site.posts | first %}{% endunless %}
-    <a class="card" href="{{ featured.url }}" style="padding:40px">
+    <a class="card article-card" href="{{ featured.url }}" data-category="{{ featured.category | slugify }}" style="padding:40px">
       <span class="eyebrow">Featured &middot; {{ featured.category }}</span>
       <h2 class="h2">{{ featured.title }}</h2>
       <p style="font-size:17px">{{ featured.description }}</p>
