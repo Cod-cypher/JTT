@@ -28,7 +28,9 @@ Then open http://127.0.0.1:4000. Analytics only load in production builds (`JEKY
 | Meta tags, Open Graph, canonical | `_includes/head.html` |
 | JSON-LD (Organization, Person, WebSite, WebPage, Service, BreadcrumbList, FAQPage) | `_includes/schema.html` |
 | The approved recommendation quote | `_includes/recommendation.html` |
-| Onboarding, re-check and confidentiality wording for service pages | `_includes/how-we-work.html` |
+| Confidentiality statements (exact approved wording) | `_includes/confidentiality-cards.html` |
+| Page templates: service, audience, software, article, legal | `_layouts/` |
+| Design system (colors, type, components) | `assets/css/site.css` |
 
 Each page sets its own `title`, `description`, `breadcrumb`, and optionally `service_id`, `page_type` and `faqs` in front matter. FAQs in front matter render both the visible accordion and the FAQPage JSON-LD, so the two always match.
 
