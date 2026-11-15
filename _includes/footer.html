@@ -32,7 +32,7 @@
     </div>
     <div class="footer-bottom">
       <div class="row">
-        <span>&copy; {{ site.time | date: '%Y' }} Jade Title Services</span>
+        <span>&copy; {{ site.time | date: '%Y' }} {{ site.legal_name }}, doing business as Jade Title Services</span>
         <span class="row">
           {%- for l in site.data.nav.legal %}
           {%- include page-exists.html url=l.url -%}

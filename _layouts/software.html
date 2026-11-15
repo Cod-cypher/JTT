@@ -50,12 +50,7 @@ layout: default
         {% include faq-list.html items=page.faqs open_first=true %}
       </div>
 
-      <div class="block">
-        <h2>Related reading</h2>
-        <div class="card-grid">
-          <a class="card" href="/resources/"><h3 class="serif">{{ sw.name }} guides and news</h3><p>Articles for teams working in {{ sw.name }}.</p><span class="card-link">Browse resources</span></a>
-        </div>
-      </div>
+      {% include related-articles.html %}
 
       <p class="lead" style="font-size:15px">Jade Title Services is not affiliated with, endorsed by or a partner of {{ sw.name }}. {{ sw.name }} is a trademark of its owner.</p>
     </article>

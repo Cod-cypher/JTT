@@ -13,9 +13,8 @@ layout: default
   <div class="container" style="max-width:820px">
     <div class="prose">
       <p><strong>Last updated:</strong> <span class="placeholder">{{ page.updated }}</span></p>
-      <p class="draft-note">[LEGAL TEXT: this page needs wording written or reviewed by a lawyer. The headings show the structure only.]</p>
+      {%- if page.subtitle %}<p class="lead">{{ page.subtitle }}</p>{% endif %}
 {{ content }}
-      <p>Questions: <a href="mailto:{{ site.email }}">{{ site.email }}</a> or <a href="tel:{{ site.phone_e164 }}">{{ site.phone }}</a>.</p>
     </div>
   </div>
 </section>

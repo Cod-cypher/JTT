@@ -4,7 +4,8 @@ description: "Practical guides and news for title production teams: commitments,
 page_type: CollectionPage
 breadcrumb:
   - name: "Resources"
-categories: [Commitments, Final policies, Order entry, Outsourcing, Qualia, SoftPro, RamQuest, Compliance]
+featured: qualia-closer-pilot-title-production
+categories: [Commitments, Final policies, Order entry, Outsourcing, Qualia, SoftPro, RamQuest]
 ---
 <section class="page-hero bg-green lattice">
   <div class="container">
@@ -17,7 +18,7 @@ categories: [Commitments, Final policies, Order entry, Outsourcing, Qualia, Soft
 <section class="section bg-light">
   <div class="container stack-lg">
     {%- if site.posts.size > 0 %}
-    {%- assign featured = site.posts | first %}
+    {%- assign featured = site.posts | where: "slug", page.featured | first %}{% unless featured %}{% assign featured = site.posts | first %}{% endunless %}
     <a class="card" href="{{ featured.url }}" style="padding:40px">
       <span class="eyebrow">Featured &middot; {{ featured.category }}</span>
       <h2 class="h2">{{ featured.title }}</h2>
@@ -31,12 +32,12 @@ categories: [Commitments, Final policies, Order entry, Outsourcing, Qualia, Soft
     </div>
 
     <div class="card-grid card-grid--wide" id="article-list">
-      {%- for p in site.posts %}
+      {%- for p in site.posts %}{% if p.url == featured.url %}{% continue %}{% endif %}
       <a class="card article-card" href="{{ p.url }}" data-category="{{ p.category | slugify }}">
         <span class="eyebrow">{{ p.category }}</span>
         <h2 class="serif" style="font-size:22px;line-height:1.3">{{ p.title }}</h2>
         <p><time datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%B %-d, %Y" }}</time></p>
-        <span class="card-link">Read the {% if p.kind == "News" %}article{% else %}guide{% endif %}</span>
+        <span class="card-link">Read the {% if p.type == "news" %}article{% else %}guide{% endif %}</span>
       </a>
       {%- endfor %}
     </div>

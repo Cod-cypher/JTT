@@ -14,6 +14,8 @@ import sys
 
 sys.stdout.reconfigure(encoding='utf-8')
 SITE = sys.argv[1] if len(sys.argv) > 1 else '_site'
+# Reviewed uses that are allowed: they describe a vendor's product or say Jade does NOT do escrow.
+REVIEWED = ['title and escrow file', 'title and escrow services', 'escrow or settlement agent', 'Escrow, disbursement and the closing table are yours', 'no access to escrow accounting']
 FORBIDDEN = [r'\bescrow\b', r'E&O|E&amp;O', r'ALTA member', r'\d+\s?% accura', r'accuracy rate', r'certified']
 
 pages, problems, placeholders = {}, [], []
@@ -51,12 +53,30 @@ for url, s in sorted(pages.items()):
     text = re.sub(r'<[^>]+>', ' ', body)
     for ph in sorted(set(re.findall(r'\[[A-Z][A-Z ,:.\'"\-/()]{3,}[^\]]*\]', text))):
         placeholders.append(f'{url}: {ph[:110]}')
+    reviewed_text = text
+    for r in REVIEWED:
+        reviewed_text = reviewed_text.replace(r, '')
     for pat in FORBIDDEN:
-        for m in re.finditer(pat, text, re.I):
+        for m in re.finditer(pat, reviewed_text, re.I):
             problems.append(f'{url}: forbidden term "{m.group(0)}"')
+
+# Launch blockers recorded in source front matter
+blockers = []
+for root, dirs, files in os.walk('.'):
+    dirs[:] = [d for d in dirs if d not in ('_site', 'vendor', '.git', 'node_modules', 'tools')]
+    for f in files:
+        if f.endswith(('.md', '.html')):
+            src = open(os.path.join(root, f), encoding='utf-8', errors='replace').read()
+            head = src.split('---', 2)[1] if src.startswith('---') else ''
+            if 'launch_date_pending: true' in head:
+                blockers.append(f'{os.path.join(root, f)}: set the real publish date in the filename, re-check sources, remove the flag')
+            if 'legal_review_pending: true' in head:
+                blockers.append(f'{os.path.join(root, f)}: Ali to confirm the text; then remove the flag, noindex and sitemap: false')
 
 print(f'{len(pages)} pages checked\n')
 print('PROBLEMS' if problems else 'PROBLEMS: none')
 for p in problems: print('  ' + p)
+print(f'\nLAUNCH BLOCKERS ({len(blockers)})')
+for b in blockers: print('  ' + b)
 print(f'\nPLACEHOLDERS ({len(placeholders)})')
 for p in placeholders: print('  ' + p)

@@ -3,50 +3,65 @@ layout: default
 og_type: article
 ---
 {%- comment -%}
-  Article template (artboard "Resources: article page"). Front matter per post:
-  title (H1), seo_title, description, category, kind (News/Guide), date, updated,
-  toc: [{id, label}], summary: [..], sources: [{label, url, read}], related_services: [ids],
-  software_id (optional), keep_reading: [{url, title, desc}].
-  Every fact must come from a source opened on the day of writing (PLAN.md 3b).
+  Article template (design "resources-article.html"). Front matter comes from the
+  content pack: title, description, category, type (guide|news), hub, service,
+  related (slugs), sources [{name, url, read_on}], seo_title, software_id.
+  The table of contents is built from the article's H2s. "Updated" shows only
+  when `updated` is set after a real edit (content/README.md).
 {%- endcomment -%}
+{%- assign svc = site.data.services | where: "url", page.service | first -%}
+{%- if svc -%}{%- assign svc_name = svc.name -%}{%- else -%}{%- assign svc_name = "Our title production services" -%}{%- endif -%}
+{%- assign sw = site.data.software | where: "id", page.software_id | first -%}
 <section class="page-hero bg-green lattice">
   <div class="container">
     {% include breadcrumb.html %}
-    <span class="eyebrow">{{ page.category | upcase }}{% if page.kind %} &middot; {{ page.kind | upcase }}{% endif %}</span>
+    <span class="eyebrow">{{ page.category | upcase }} &middot; {{ page.type | default: "guide" | upcase }}</span>
     <h1>{{ page.title }}</h1>
-    <p class="intro" style="font-size:16px">By <a href="/about/" style="color:#fff">{{ site.founder.name }}</a> &middot; <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>{% if page.updated %} &middot; Updated <time datetime="{{ page.updated | date_to_xmlschema }}">{{ page.updated | date: "%B %-d, %Y" }}</time>{% endif %}</p>
+    <p class="intro" style="font-size:16px">By <a href="/about/" style="color:#fff">{{ site.founder.name }}</a>, {{ site.founder.job_title }} &middot; <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>{% if page.updated %} &middot; Updated <time datetime="{{ page.updated | date_to_xmlschema }}">{{ page.updated | date: "%B %-d, %Y" }}</time>{% endif %}</p>
   </div>
 </section>
 
 <section class="bg-white">
   <div class="container content-layout">
     <article class="content-main">
-      {%- if page.summary %}
-      <div class="panel bg-pale">
-        <span class="eyebrow">In short</span>
-        <ul class="prose" style="color:var(--muted-on-pale)">{% for s in page.summary %}<li>{{ s }}</li>{% endfor %}</ul>
-      </div>
-      {%- endif %}
-
-      <div class="prose">
+      <div class="prose article-body">
 {{ content }}
       </div>
 
-      {%- if page.sources %}
-      <p class="lead" style="font-size:15px">Sources: {% for s in page.sources %}<a href="{{ s.url }}" rel="noopener" target="_blank">{{ s.label }}</a>{% if s.read %}, read {{ s.read }}{% endif %}{% unless forloop.last %}; {% endunless %}{% endfor %}.{% if page.software_id %}{% assign sw = site.data.software | where: "id", page.software_id | first %} Jade Title Services is not affiliated with {{ sw.name }}. {{ sw.name }} is a trademark of its owner.{% endif %}</p>
-      {%- endif %}
-
-      <div class="aside-box" style="flex-direction:row;gap:20px;align-items:center">
-        <span class="placeholder" style="flex:none;width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px">[PHOTO]</span>
-        <span><strong>{{ site.founder.name }}</strong><br><span class="lead" style="font-size:15px">{{ site.founder.job_title }} at Jade Title Services. In title support for U.S. title companies since 2019.</span></span>
+      <div class="panel bg-pale">
+        <h2>Need a hand with this?</h2>
+        <p>Jade is an offshore title production team. We work inside your software, following an SOP you approve, and your team re-checks everything before it is issued. Start with a free trial of up to 10 files.</p>
+        <div class="btn-row"><a class="btn btn-primary" href="{{ page.service }}">{{ svc_name }}</a><a class="btn btn-secondary" href="/contact/">Get a free consultation</a></div>
       </div>
 
-      {%- if page.keep_reading %}
+      {%- if page.sources.size > 0 %}
+      <div class="sources">
+        <h2 class="label-heading">Sources</h2>
+        <ul>
+          {%- for s in page.sources %}
+          <li><a href="{{ s.url }}" target="_blank" rel="noopener">{{ s.name }}</a>, read {{ s.read_on | date: "%B %-d, %Y" }}.</li>
+          {%- endfor %}
+        </ul>
+      </div>
+      {%- endif %}
+      {%- if sw %}
+      <p class="lead" style="font-size:15px">Jade Title Services is not affiliated with, endorsed by or a partner of {{ sw.name }}. {{ sw.name }} is a trademark of its owner.</p>
+      {%- endif %}
+
+      <div class="aside-box">
+        <span class="label">About the author</span>
+        <span><strong>{{ site.founder.name }}</strong>, {{ site.founder.job_title }} at Jade Title Services. In title support for U.S. title companies since 2019, and lead of the Final Policy Department for Members Title Group.</span>
+      </div>
+
+      {%- if page.related.size > 0 %}
       <div class="block">
         <h2>Keep reading</h2>
         <div class="card-grid">
-          {%- for r in page.keep_reading %}
-          <a class="card" href="{{ r.url }}"><h3 class="serif">{{ r.title }}</h3><p>{{ r.desc }}</p><span class="card-link">Read the guide</span></a>
+          {%- for slug in page.related %}
+          {%- assign r = site.posts | where: "slug", slug | first %}
+          {%- if r %}
+          <a class="card" href="{{ r.url }}"><span class="eyebrow">{{ r.category }}</span><h3 class="serif">{{ r.title }}</h3><span class="card-link">Read the {% if r.type == "news" %}article{% else %}guide{% endif %}</span></a>
+          {%- endif %}
           {%- endfor %}
         </div>
       </div>
@@ -54,20 +69,24 @@ og_type: article
     </article>
 
     <aside class="content-aside" aria-label="Article navigation and consultation">
-      {%- if page.toc %}
+      {%- assign h2s = content | split: '<h2 id="' %}
+      {%- if h2s.size > 1 %}
       <nav class="aside-box" aria-label="In this article">
         <span class="label">In this article</span>
-        {%- for t in page.toc %}<a href="#{{ t.id }}">{{ t.label }}</a>{% endfor %}
+        {%- for part in h2s offset: 1 %}
+        {%- assign hid = part | split: '"' | first %}
+        {%- assign hlabel = part | split: '</h2>' | first | split: '>' | last %}
+        <a href="#{{ hid }}">{{ hlabel }}</a>
+        {%- endfor %}
       </nav>
       {%- endif %}
       {% include consult-box.html %}
-      {%- if page.related_services or page.software_id %}
-      <nav class="aside-box" aria-label="Related services">
-        <span class="label">Related services</span>
-        {%- for id in page.related_services %}{% assign s = site.data.services | where: "id", id | first %}<a href="{{ s.url }}">{{ s.name }}</a>{% endfor %}
-        {%- if page.software_id %}{% assign sw = site.data.software | where: "id", page.software_id | first %}<a href="{{ sw.url }}">{{ sw.footer }}</a>{% endif %}
+      <nav class="aside-box" aria-label="Related pages">
+        <span class="label">Related</span>
+        <a href="{{ page.service }}">{{ svc_name }}</a>
+        {%- if page.hub != page.service %}{% assign hubpage = site.pages | where: "url", page.hub | first %}<a href="{{ page.hub }}">{% if sw %}{{ sw.footer }}{% else %}{{ hubpage.h1 | default: hubpage.title | split: " |" | first }}{% endif %}</a>{% endif %}
+        <a href="/resources/">All articles</a>
       </nav>
-      {%- endif %}
     </aside>
   </div>
 </section>

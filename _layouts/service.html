@@ -24,9 +24,7 @@ layout: default
     <article class="content-main">
       <div class="block">
         <h2>{{ page.scope_heading }}</h2>
-        {%- if page.scope_draft %}
-        <p class="draft-note">[DRAFT: Ali to confirm this scope list matches exactly what Jade delivers before it goes live.]</p>
-        {%- endif %}
+        <p class="lead">Everything below is done inside your software, following the SOP you approved.</p>
         <ul class="check-list">
           {%- for item in page.scope %}
           <li>{% include check.svg.html %}<span>{{ item }}</span></li>
@@ -70,16 +68,7 @@ layout: default
         {% include faq-list.html items=page.faqs open_first=true %}
       </div>
 
-      {%- if page.related %}
-      <div class="block">
-        <h2>Related reading</h2>
-        <div class="card-grid">
-          {%- for r in page.related %}
-          <a class="card" href="{{ r.url }}"><h3 class="serif">{{ r.title }}</h3><p>{{ r.desc }}</p><span class="card-link">{{ r.link | default: "Read the article" }}</span></a>
-          {%- endfor %}
-        </div>
-      </div>
-      {%- endif %}
+      {% include related-articles.html %}
     </article>
 
     <aside class="content-aside" aria-label="Consultation and related pages">

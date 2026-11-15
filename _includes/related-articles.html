@@ -1,0 +1,16 @@
+{%- comment -%}
+  "Related reading" on a cluster hub: every article whose `hub` is this page
+  (PLAN.md 6c). Renders nothing when there are none.
+{%- endcomment -%}
+{%- assign hub_posts = site.posts | where: "hub", page.url -%}
+{%- if hub_posts.size > 0 %}
+<div class="block">
+  <h2>Related reading</h2>
+  <div class="card-grid">
+    {%- for r in hub_posts %}
+    <a class="card" href="{{ r.url }}"><span class="eyebrow">{{ r.category }}</span><h3 class="serif">{{ r.title }}</h3><p>{{ r.description }}</p><span class="card-link">Read the {% if r.type == "news" %}article{% else %}guide{% endif %}</span></a>
+    {%- endfor %}
+    <a class="card" href="/resources/"><h3 class="serif">All guides and articles</h3><p>Guides for title production teams.</p><span class="card-link">Browse resources</span></a>
+  </div>
+</div>
+{%- endif %}
