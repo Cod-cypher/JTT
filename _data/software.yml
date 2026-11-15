@@ -1,0 +1,13 @@
+# Jade is not affiliated with these vendors. Names as text only, no logos.
+- id: qualia
+  name: Qualia
+  url: /software/qualia/
+  footer: Qualia support
+- id: softpro
+  name: SoftPro
+  url: /software/softpro/
+  footer: SoftPro support
+- id: ramquest
+  name: RamQuest
+  url: /software/ramquest/
+  footer: RamQuest support

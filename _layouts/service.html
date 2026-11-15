@@ -1,0 +1,108 @@
+---
+layout: default
+---
+{%- comment -%}
+  Service page template (artboards "Service: ..."). Content comes from front matter:
+  h1, intro, scope_heading, scope (list, HTML allowed), scope_draft, stays, steps,
+  faq_heading, faqs, software_label. The page body is extra explanatory copy.
+{%- endcomment -%}
+{%- assign svc = site.data.services | where: "id", page.service_id | first -%}
+<section class="page-hero bg-green lattice">
+  <div class="container">
+    {% include breadcrumb.html %}
+    <h1>{{ page.h1 }}</h1>
+    <p class="intro">{{ page.intro }}</p>
+    <div class="btn-row">
+      <a class="btn btn-light" href="/contact/">Get a free consultation</a>
+      <a class="btn btn-outline-light" href="tel:{{ site.phone_e164 }}">Call {{ site.phone }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="bg-white">
+  <div class="container content-layout">
+    <article class="content-main">
+      <div class="block">
+        <h2>{{ page.scope_heading }}</h2>
+        {%- if page.scope_draft %}
+        <p class="draft-note">[DRAFT: Ali to confirm this scope list matches exactly what Jade delivers before it goes live.]</p>
+        {%- endif %}
+        <ul class="check-list">
+          {%- for item in page.scope %}
+          <li>{% include check.svg.html %}<span>{{ item }}</span></li>
+          {%- endfor %}
+        </ul>
+      </div>
+
+      <div class="panel bg-light">
+        <h2>What stays with your team</h2>
+        <p>{{ page.stays }}</p>
+      </div>
+
+      <div class="panel bg-pale">
+        <h2>Before the first file</h2>
+        <p>You either walk us through how your team works a file, or send us reference commitments and policies. From those we learn your wording and how you show each detail: deeds, mortgages, liens, chain of title, taxes and so on. We ask our questions, draft a standard operating procedure and send it to you. Work starts only once you have approved it.</p>
+      </div>
+
+      <div class="block">
+        <h2>How it works</h2>
+        <ol class="steps">
+          {%- for s in page.steps %}
+          <li><span class="num" aria-hidden="true">0{{ forloop.index }}</span><h3>{{ s.t }}</h3><p>{{ s.d }}</p></li>
+          {%- endfor %}
+        </ol>
+      </div>
+
+      {%- assign body = content | strip %}
+      {%- if body != "" %}
+      <div class="prose">
+{{ content }}
+      </div>
+      {%- endif %}
+
+      <div class="panel bg-light">
+        <h2>Confidential, and inside your software</h2>
+        <p>Everything you send us is confidential and handled only by our own team. We work inside your software, so nothing is downloaded, copied out or kept on our side. Files are opened only in your system, or from documents you email us, and every file stays where you can revisit it.</p>
+      </div>
+
+      <div class="block">
+        <h2>{{ page.faq_heading }}</h2>
+        {% include faq-list.html items=page.faqs open_first=true %}
+      </div>
+
+      {%- if page.related %}
+      <div class="block">
+        <h2>Related reading</h2>
+        <div class="card-grid">
+          {%- for r in page.related %}
+          <a class="card" href="{{ r.url }}"><h3 class="serif">{{ r.title }}</h3><p>{{ r.desc }}</p><span class="card-link">{{ r.link | default: "Read the article" }}</span></a>
+          {%- endfor %}
+        </div>
+      </div>
+      {%- endif %}
+    </article>
+
+    <aside class="content-aside" aria-label="Consultation and related pages">
+      {% include consult-box.html service=page.service_id %}
+      <nav class="aside-box" aria-label="All services">
+        <span class="label">All services</span>
+        {%- for s in site.data.services %}
+        {%- if s.id == page.service_id %}
+        <span aria-current="page">{{ s.name }}</span>
+        {%- else %}
+        <a href="{{ s.url }}">{{ s.name }}</a>
+        {%- endif %}
+        {%- endfor %}
+      </nav>
+      <nav class="aside-box" aria-label="In your software">
+        <span class="label">In your software</span>
+        {%- for sw in site.data.software %}
+        {%- include page-exists.html url=sw.url %}
+        {%- if exists %}<a href="{{ sw.url }}">{{ page.software_label }} in {{ sw.name }}</a>{% else %}<span>{{ page.software_label }} in {{ sw.name }}</span>{% endif %}
+        {%- endfor %}
+      </nav>
+    </aside>
+  </div>
+</section>
+
+{% include cta.html %}

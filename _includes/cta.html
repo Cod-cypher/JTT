@@ -1,12 +1,12 @@
-<section class="cta-section">
+<section class="cta-band bg-green lattice"{% if include.id %} id="{{ include.id }}"{% endif %} aria-labelledby="cta-heading">
   <div class="container">
-    <div class="cta-banner" data-animate="scale-in">
-      <h2>{{ include.heading | default: "Ready to Get Started?" }}</h2>
-      <p>{{ include.text | default: "Contact us today for a free consultation and discover how Jade Title Services can streamline your closings." }}</p>
-      <a href="/contact/" class="cta-btn">
-        Get a Free Consultation
-        {% include icon-arrow.html %}
-      </a>
+    <div class="cta-copy">
+      <h2 id="cta-heading">{{ include.heading | default: "Try us on your next 10 files" }}</h2>
+      <p>{{ include.text | default: "Start with a trial of up to 10 files. Pricing goes as low as $5 per file, depending on volume. We reply within 24 hours." }}</p>
+    </div>
+    <div class="cta-actions">
+      <a class="btn btn-light" href="/contact/">Get a free consultation</a>
+      <a class="call" href="tel:{{ site.phone_e164 }}">or call {{ site.phone }}</a>
     </div>
   </div>
 </section>

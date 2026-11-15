@@ -1,0 +1,3 @@
+{%- comment -%} Sets `exists` to true if a page with include.url is in the build. {%- endcomment -%}
+{%- assign _match = site.pages | where: "url", include.url | first -%}
+{%- if _match -%}{%- assign exists = true -%}{%- else -%}{%- assign exists = false -%}{%- endif -%}

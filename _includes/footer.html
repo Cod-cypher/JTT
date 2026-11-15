@@ -1,61 +1,47 @@
-<footer class="footer">
+<footer class="site-footer">
+  <svg class="watermark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><polygon points="18,10 46,10 42,24 22,24" fill="#8fd19e" fill-opacity="0.13"/><polygon points="6,24 18,10 22,24" fill="#8fd19e" fill-opacity="0.09"/><polygon points="58,24 46,10 42,24" fill="#8fd19e" fill-opacity="0.05"/><polygon points="6,24 22,24 32,58" fill="#8fd19e" fill-opacity="0.06"/><polygon points="22,24 42,24 32,58" fill="#8fd19e" fill-opacity="0.1"/><polygon points="42,24 58,24 32,58" fill="#8fd19e" fill-opacity="0.03"/></svg>
+  <svg class="watermark-outline" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><polygon points="18,10 46,10 58,24 32,58 6,24" fill="none" stroke="#8fd19e" stroke-opacity="0.12" stroke-width="0.5"/><path d="M6 24 H58 M18 10 L22 24 L32 58 L42 24 L46 10" fill="none" stroke="#8fd19e" stroke-opacity="0.12" stroke-width="0.5"/></svg>
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="/" class="logo">
-          <div class="logo-icon">{% include logo.svg.html %}</div>
+      <div class="footer-col footer-col--brand">
+        <a class="footer-brand" href="/" aria-label="Jade Title Services, home">
+          {% include logo-reversed.svg.html %}
+          <span class="brand-jade" aria-hidden="true">JADE</span>
         </a>
-        <p>An offshore title production team supporting U.S. title companies since {{ site.founded }}: title order entry, search preparation, title examination and commitments, and final policies.</p>
+        <p>Offshore title production support for U.S. title companies, attorneys and lenders.</p>
+        <a class="footer-phone" href="tel:{{ site.phone_e164 }}">{{ site.phone }}</a>
+        <a class="footer-email" href="mailto:{{ site.email }}">{{ site.email }}</a>
       </div>
-
-      <div>
-        <h2 class="footer-heading">Quick Links</h2>
-        <ul class="footer-links">
-          {%- for item in site.data.nav.quick_links %}
-          <li><a href="{{ item.url }}">{{ item.name }}</a></li>
-          {%- endfor %}
-        </ul>
+      {%- for col in site.data.nav.footer %}
+      {%- if col.data %}{% assign items = site.data[col.data] %}{% else %}{% assign items = col.links %}{% endif %}
+      {%- capture links %}
+        {%- for l in items %}
+        {%- include page-exists.html url=l.url -%}
+        {%- if exists %}
+        <a href="{{ l.url }}">{{ l.footer | default: l.name }}</a>
+        {%- endif %}
+        {%- endfor %}
+      {%- endcapture %}
+      {%- assign links_stripped = links | strip %}
+      {%- if links_stripped != "" %}
+      <div class="footer-col">
+        <h2>{{ col.title }}</h2>{{ links }}
       </div>
-
-      <div>
-        <h2 class="footer-heading">Services</h2>
-        <ul class="footer-links">
-          {%- for s in site.data.services %}
-          <li><a href="{{ s.url }}">{{ s.name }}</a></li>
-          {%- endfor %}
-        </ul>
-      </div>
-
-      <div>
-        <h2 class="footer-heading">Who We Serve</h2>
-        <ul class="footer-links">
-          {%- for a in site.data.audiences %}
-          <li><a href="{{ a.url }}">{{ a.name }}</a></li>
-          {%- endfor %}
-        </ul>
-      </div>
-
-      <div>
-        <h2 class="footer-heading">Contact</h2>
-        <ul class="footer-links footer-contact">
-          <li>
-            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <a href="tel:{{ site.phone_e164 }}">{{ site.phone }}</a>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <a href="mailto:{{ site.email }}">{{ site.email }}</a>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span>Flexible hours, including evenings and weekends</span>
-          </li>
-        </ul>
-      </div>
+      {%- endif %}
+      {%- endfor %}
     </div>
-
     <div class="footer-bottom">
-      <span>&copy; {{ site.time | date: '%Y' }} Jade Title Services. All rights reserved. <span class="footer-credit">Website and search optimization by <a href="https://optimizeindex.com/" rel="nofollow">OptimizeIndex</a>.</span></span>
+      <div class="row">
+        <span>&copy; {{ site.time | date: '%Y' }} Jade Title Services</span>
+        <span class="row">
+          {%- for l in site.data.nav.legal %}
+          {%- include page-exists.html url=l.url -%}
+          {%- if exists %}<a href="{{ l.url }}">{{ l.name }}</a>{% endif %}
+          {%- endfor %}
+          <span>Website and search optimization by <a href="https://optimizeindex.com/" rel="nofollow">OptimizeIndex</a></span>
+        </span>
+      </div>
+      <span class="disclaimer">Jade Title Services is not a title insurer, underwriter or law firm, and is not affiliated with Qualia, SoftPro or RamQuest.</span>
     </div>
   </div>
 </footer>

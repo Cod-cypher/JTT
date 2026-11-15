@@ -1,21 +1,30 @@
-<nav class="navbar">
+<div class="utility-bar">
   <div class="container">
-    <a href="/" class="logo">
-      <div class="logo-icon">{% include logo.svg.html %}</div>
-    </a>
-
-    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" onclick="var n=document.querySelector('.nav-links');this.setAttribute('aria-expanded',n.classList.toggle('open'))">
-      <span></span><span></span><span></span>
-    </button>
-
-    <ul class="nav-links">
-      {%- for item in site.data.nav.main %}
-      {%- assign is_current = false -%}
-      {%- if item.url == '/' and page.url == '/' -%}{%- assign is_current = true -%}
-      {%- elsif item.url != '/' and page.url contains item.url -%}{%- assign is_current = true -%}{%- endif %}
-      <li><a href="{{ item.url }}"{% if is_current %} aria-current="page" class="active"{% endif %}>{{ item.name }}</a></li>
-      {%- endfor %}
-      <li><a href="{{ site.data.nav.cta.url }}" class="nav-cta">{{ site.data.nav.cta.name }}</a></li>
-    </ul>
+    <span class="tagline">Back-office title support for U.S. title companies since {{ site.founded }}</span>
+    <div class="links">
+      <a class="phone" href="tel:{{ site.phone_e164 }}">{{ site.phone }}</a>
+      <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+    </div>
   </div>
-</nav>
+</div>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/" aria-label="Jade Title Services, home">
+      {% include logo.svg.html %}
+      <span class="brand-words" aria-hidden="true"><span class="brand-jade">JADE</span><span class="brand-ts">TITLE SERVICES</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      Menu
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      {%- for item in site.data.nav.main %}
+      {%- include page-exists.html url=item.url -%}
+      {%- if exists %}
+      <a href="{{ item.url }}"{% if page.url contains item.url %} aria-current="page"{% endif %}>{{ item.name }}</a>
+      {%- endif %}
+      {%- endfor %}
+      <a class="btn btn-primary btn-compact" href="{{ site.data.nav.cta.url }}">{{ site.data.nav.cta.name }}</a>
+    </nav>
+  </div>
+</header>

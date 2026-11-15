@@ -5,16 +5,35 @@ page_type: ContactPage
 breadcrumb:
   - name: "Contact"
 ---
-<section class="page-hero">
+<section class="page-hero bg-green lattice">
   <div class="container">
     {% include breadcrumb.html %}
     <h1>Get a free consultation</h1>
-    <p>Tell us your volume and the software you use. We will reply within 24 hours with how we would work your files and a per-file rate.</p>
-    <div class="hero-buttons">
-      <a href="tel:{{ site.phone_e164 }}" class="btn-primary">Call {{ site.phone }} {% include icon-arrow.html %}</a>
-      <a href="mailto:{{ site.email }}" class="btn-secondary">Email {{ site.email }} {% include icon-arrow.html %}</a>
-    </div>
+    <p class="intro">Tell us your volume and the software you use. We will reply within 24 hours with how we would work your files and a per-file rate.</p>
   </div>
 </section>
 
-{% include contact-form.html heading="Send us a message" %}
+<section class="bg-white">
+  <div class="container content-layout">
+    <div class="content-main">
+      <div class="block">
+        <h2>Send us a message</h2>
+        {% include contact-form.html %}
+      </div>
+    </div>
+    <aside class="content-aside" aria-label="Other ways to reach us">
+      <div class="aside-box">
+        <span class="label">Call</span>
+        <a href="tel:{{ site.phone_e164 }}" style="font-size:20px;font-weight:700">{{ site.phone }}</a>
+        <span class="label">Email</span>
+        <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+        <span class="label">Hours</span>
+        <span>Flexible, including evenings and weekends</span>
+        <span class="label">Where we work</span>
+        <span>An offshore team serving title companies across the United States</span>
+        <span class="label">Response time</span>
+        <span>Within 24 hours</span>
+      </div>
+    </aside>
+  </div>
+</section>

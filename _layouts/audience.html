@@ -1,0 +1,80 @@
+---
+layout: default
+---
+{%- comment -%} Audience page template (artboards "Audience: ..."). Front matter: h1, intro, challenge. {%- endcomment -%}
+<section class="page-hero bg-green lattice">
+  <div class="container">
+    {% include breadcrumb.html %}
+    <h1>{{ page.h1 }}</h1>
+    <p class="intro">{{ page.intro }}</p>
+    <div class="btn-row"><a class="btn btn-light" href="/contact/">Get a free consultation</a></div>
+  </div>
+</section>
+
+<section class="bg-white">
+  <div class="container content-layout">
+    <article class="content-main">
+      <div class="block">
+        <h2>The challenge</h2>
+        <p class="lead">{{ page.challenge }}</p>
+      </div>
+
+      <div class="block">
+        <h2>How Jade helps</h2>
+        <ul class="check-list">
+          <li>{% include check.svg.html %}<span><a href="/services/order-entry/">Title order entry</a> so new files are open and ready within 24 hours.</span></li>
+          <li>{% include check.svg.html %}<span><a href="/services/search-preparation/">Title search preparation</a> so your searcher starts with everything in place.</span></li>
+          <li>{% include check.svg.html %}<span><a href="/services/title-examination-commitments/">Title examination and commitments</a> typed in your templates for your team to re-check.</span></li>
+          <li>{% include check.svg.html %}<span><a href="/services/final-policies/">Final policies</a> prepared after closing, so none fall behind.</span></li>
+        </ul>
+      </div>
+
+      <div class="panel bg-light">
+        <h2>Our goal</h2>
+        <p>We type everything so your team only has to re-check it. You review our work before it goes out, then get back to closings and client relationships.</p>
+      </div>
+
+      <div class="block">
+        <h2>Getting started</h2>
+        <ol class="steps">
+          <li><span class="num" aria-hidden="true">01</span><h3>Free consultation</h3><p>Tell us your volume and software.</p></li>
+          <li><span class="num" aria-hidden="true">02</span><h3>You show us your process</h3><p>By walkthrough, or with reference commitments and policies. We then draft your SOP.</p></li>
+          <li><span class="num" aria-hidden="true">03</span><h3>You approve the SOP</h3><p>No work starts before that.</p></li>
+          <li><span class="num" aria-hidden="true">04</span><h3>Trial of up to 10 files</h3><p>See the work before you commit.</p></li>
+        </ol>
+      </div>
+
+      {%- assign body = content | strip %}
+      {%- if body != "" %}
+      <div class="prose">
+{{ content }}
+      </div>
+      {%- endif %}
+
+      <div class="panel bg-pale">
+        <h2>Confidential, and inside your software</h2>
+        <p>Everything you send us is confidential and handled only by our own team. We work inside your software, so nothing is downloaded, copied out or kept on our side. Files are opened only in your system, or from documents you email us, and every file stays where you can revisit it.</p>
+      </div>
+
+      <div class="bg-green" style="border-radius:10px">
+        {% include recommendation.html %}
+      </div>
+    </article>
+
+    <aside class="content-aside" aria-label="Consultation and related pages">
+      {% include consult-box.html %}
+      <nav class="aside-box" aria-label="Who we serve">
+        <span class="label">Who we serve</span>
+        {%- for a in site.data.audiences %}
+        {%- if a.url == page.url %}<span aria-current="page">{{ a.name }}</span>{% else %}<a href="{{ a.url }}">{{ a.name }}</a>{% endif %}
+        {%- endfor %}
+      </nav>
+      <nav class="aside-box" aria-label="Services">
+        <span class="label">Services</span>
+        {%- for s in site.data.services %}<a href="{{ s.url }}">{{ s.name }}</a>{% endfor %}
+      </nav>
+    </aside>
+  </div>
+</section>
+
+{% include cta.html %}

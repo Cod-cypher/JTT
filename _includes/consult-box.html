@@ -1,0 +1,13 @@
+{%- comment -%} Sidebar consultation form (service, software and audience pages). {%- endcomment -%}
+{%- assign fid = include.id | default: 'consult' -%}
+<form class="consult-box" id="{{ fid }}" action="{{ site.form_action }}" method="POST" data-jade-form novalidate>
+  <span class="title">Free consultation</span>
+  <p>Tell us your monthly volume and software. We reply within 24 hours.</p>
+  <div class="field"><label for="{{ fid }}-name">Name</label><input id="{{ fid }}-name" name="name" type="text" autocomplete="name" required></div>
+  <div class="field"><label for="{{ fid }}-email">Work email</label><input id="{{ fid }}-email" name="email" type="email" autocomplete="email" required></div>
+  <div class="field"><label for="{{ fid }}-vol">Orders per month</label><input id="{{ fid }}-vol" name="volume" type="text" inputmode="numeric" data-label="Orders per month"></div>
+  {%- if include.service %}<input type="hidden" name="service" value="{{ include.service }}">{% endif %}
+  <input type="hidden" name="message" value="Consultation request from the sidebar form.">
+  <button class="btn btn-dark" type="submit">Request consultation</button>
+  <div data-form-status role="status" tabindex="-1" hidden></div>
+</form>

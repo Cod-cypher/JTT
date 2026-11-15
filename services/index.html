@@ -2,105 +2,64 @@
 title: "Title Production Outsourcing Services | Jade Title Services"
 description: "Title production outsourcing for U.S. title companies: title order entry, search preparation, title examination and commitments, and final policies."
 page_type: CollectionPage
+cards:
+  order-entry: { desc: "New orders opened and set up in your production system, following your procedures.", link: "Order entry services" }
+  search-preparation: { desc: "The groundwork before a search, organized so your searcher starts ahead.", link: "Search preparation services" }
+  title-examination-commitments: { desc: "Your search package examined and the commitment typed in your templates.", link: "Examination and commitment services" }
+  final-policies: { desc: "Final title policies prepared after closing, so they go out on time.", link: "Final policy services" }
 breadcrumb:
   - name: "Services"
 ---
-<!-- ========== PAGE HERO ========== -->
-<section class="page-hero">
+<section class="page-hero bg-green lattice">
   <div class="container">
     {% include breadcrumb.html %}
     <h1>Title production outsourcing services</h1>
-    <p>Four back-office title services from an offshore title production team, worked inside your software from order entry to final policy.</p>
-    <div class="hero-buttons">
-      <a href="/contact/" class="btn-primary">
-        Get a Free Consultation
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    <p class="intro">Four services that cover a file from the day it opens to the final policy. Take one, or hand us the whole file.</p>
+    <div class="btn-row"><a class="btn btn-light" href="/contact/">Get a free consultation</a></div>
+  </div>
+</section>
+
+<section class="section bg-light">
+  <div class="container">
+    <div class="card-grid">
+      {%- for s in site.data.services %}
+      <a class="card" href="{{ s.url }}">
+        {% include service-icon.html id=s.id %}
+        <h2 style="font-family:var(--sans);font-size:20px">{{ s.name }}</h2>
+        <p>{{ page.cards[s.id].desc }}</p>
+        <span class="card-link">{{ page.cards[s.id].link }}</span>
       </a>
+      {%- endfor %}
     </div>
   </div>
 </section>
 
-<section class="services-section">
-  <div class="container">
-    <div class="section-header" data-animate="fade-up">
-      <span class="label">What We Offer</span>
-      <h2>Four Services, One Consistent Team</h2>
-      <p>Use one service to relieve a bottleneck, or let us support a file from intake to final policy.</p>
+<section class="section bg-white">
+  <div class="container stack-lg">
+    <div class="section-head">
+      <span class="eyebrow">On every file</span>
+      <h2 class="h2">The same standard, whichever service you choose</h2>
     </div>
-
-    <div class="services-grid" data-stagger>
-      <div class="service-card" data-animate="fade-up">
-        <div class="service-icon green">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </div>
-        <h3><a href="/services/order-entry/">Title order entry</a></h3>
-        <p>New files opened and set up accurately in your title production software, with names, property details, and amounts checked against the order documents.</p>
-        <a href="/services/order-entry/" class="learn-more">Learn more about order entry <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-      </div>
-
-      <div class="service-card" data-animate="fade-up">
-        <div class="service-icon purple">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </div>
-        <h3><a href="/services/search-preparation/">Title search preparation</a></h3>
-        <p>Legal descriptions, names to search, prior policies, and supporting documents organized so the search can start right away. We prepare searches; we do not run them.</p>
-        <a href="/services/search-preparation/" class="learn-more">Learn more about search preparation <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-      </div>
-
-      <div class="service-card" data-animate="fade-up">
-        <div class="service-icon amber">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-        </div>
-        <h3><a href="/services/title-examination-commitments/">Title examination and commitments</a></h3>
-        <p>We examine the search package you supply and type Schedule A, requirements, and exceptions in your underwriter's format, checked before delivery.</p>
-        <a href="/services/title-examination-commitments/" class="learn-more">Learn more about examination and commitments <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-      </div>
-
-      <div class="service-card" data-animate="fade-up">
-        <div class="service-icon blue">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h3><a href="/services/final-policies/">Final policies</a></h3>
-        <p>Owner's and lender's final policies prepared after closing with recording information and satisfied requirements, ready for your team to re-check and issue.</p>
-        <a href="/services/final-policies/" class="learn-more">Learn more about final policies <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-      </div>
+    <div class="card-grid card-grid--wide">
+      <div class="info-card"><h3>You approve the process first</h3><p>You either walk us through how your team works a file, or send us reference commitments and policies. From those we learn your wording and how you show each detail: deeds, mortgages, liens, chain of title, taxes and so on. We ask our questions, draft a standard operating procedure and send it to you. Work starts only once you have approved it.</p></div>
+      <div class="info-card"><h3>Your files stay in your software</h3><p>Everything you send us is confidential and handled only by our own team. We work inside your software, so nothing is downloaded, copied out or kept on our side. Files are opened only in your system, or from documents you email us, and every file stays where you can revisit it.</p></div>
+      <div class="info-card"><h3>You re-check, then close</h3><p>We type everything so your team only has to re-check it. You review our work before it goes out, then get back to closings and client relationships.</p></div>
     </div>
   </div>
 </section>
 
-<section class="page-section alt">
-  <div class="container">
-    <div class="page-grid">
-      <article class="prose">
-        <h2>How outsourced title support works</h2>
-        <p>Jade Title Services works behind the scenes as an extension of your team. We do the production work in your title production software, following your procedures, templates, and underwriter requirements. Your team re-checks our work and keeps control of underwriting decisions, issuing, closings, and your customer relationships.</p>
-        <ol>
-          <li><strong>Approve your SOP.</strong> You walk us through how you work your files, or send reference commitments and policies; we write a standard operating procedure and start only once you approve it.</li>
-          <li><strong>Send your files.</strong> Through your software or by email, the way your team already works.</li>
-          <li><strong>We do the production work.</strong> Inside your software, following the SOP you approved.</li>
-          <li><strong>Quality check.</strong> Every order goes through a quality assurance review before delivery.</li>
-          <li><strong>Back within 24 hours.</strong> Completed work comes back within our standard turnaround, ready for your team to re-check.</li>
-        </ol>
-
-        <h2>Who we serve</h2>
-        <p>We support <a href="/who-we-serve/title-companies/">title companies and agencies</a> that need extra capacity, <a href="/who-we-serve/real-estate-attorneys/">real estate attorneys</a> who handle closings and act as title agents, and <a href="/who-we-serve/lenders/">lenders</a> who depend on timely commitments and final policies. We work with teams across the United States.</p>
-
-        <h2>Software we work in</h2>
-        <p>We work in industry-leading title and settlement platforms, including Qualia, SoftPro, and RamQuest. Using something else? <a href="/contact/">Let us know</a>. We adapt to your existing systems.</p>
-
-        <h2>Why offices choose Jade Title Services</h2>
-        <ul>
-          <li>Per-file pricing tailored to your volume, as low as $5 per file</li>
-          <li>A trial of up to 10 files before you commit</li>
-          <li>Flexible hours, including evenings and weekends</li>
-          <li>Free consultations with no obligations</li>
-          <li>A 100% satisfaction guarantee</li>
-        </ul>
-        <p>Have a question that isn't answered here? Visit our <a href="/faq/">FAQ</a>.</p>
-      </article>
-
-      {% include page-aside.html %}
+<section class="section bg-dark">
+  <div class="container stack-lg">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2 class="h2">Sent today, back within 24 hours</h2>
     </div>
+    <ol class="steps">
+      <li><span class="num" aria-hidden="true">01</span><h3>Submit your order</h3><p>Send the file the way your team already works.</p></li>
+      <li><span class="num" aria-hidden="true">02</span><h3>We process it</h3><p>Inside your software and templates, to your SOP.</p></li>
+      <li><span class="num" aria-hidden="true">03</span><h3>Quality check</h3><p>Every order is reviewed before it comes back.</p></li>
+      <li><span class="num" aria-hidden="true">04</span><h3>You re-check and close</h3><p>Standard turnaround is 24 hours.</p></li>
+    </ol>
   </div>
 </section>
 

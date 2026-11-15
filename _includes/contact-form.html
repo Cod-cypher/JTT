@@ -1,111 +1,38 @@
-<section class="contact-section">
-  <div class="container">
-    <div class="contact-grid">
-      <div class="contact-form-wrap">
-        <div class="section-header-left">
-          <span class="label">Free Consultation</span>
-          <h2>{{ include.heading | default: "Send Us a Message" }}</h2>
-          <p>Fill out the form below and we'll get back to you as soon as possible.</p>
-        </div>
-
-        <iframe name="hidden_iframe" id="hidden_iframe" title="Form submission" style="display:none;"></iframe>
-        <form class="contact-form" id="contactForm" action="{{ site.form_action }}" method="POST" target="hidden_iframe">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="firstName">First Name</label>
-              <input type="text" id="firstName" name="firstName" placeholder="John" required />
-            </div>
-            <div class="form-group">
-
-              <label for="lastName">Last Name</label>
-              <input type="text" id="lastName" name="lastName" placeholder="Doe" required />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" placeholder="john@example.com" required />
-            </div>
-            <div class="form-group">
-              <label for="company">Company Name</label>
-              <input type="text" id="company" name="company" placeholder="Your Title Company" />
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="service">Service Interested In</label>
-            <select id="service" name="service">
-              <option value="" disabled selected>Select a service...</option>
-              {%- for svc in site.data.services %}
-              <option value="{{ svc.id }}">{{ svc.name }}</option>
-              {%- endfor %}
-              <option value="multiple">Multiple services</option>
-              <option value="trial">Trial of up to 10 files</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Tell us about your needs, expected volume, timeline, or any questions you have..." required></textarea>
-          </div>
-
-          <input type="hidden" id="timestamp" name="timestamp" />
-
-          <button type="submit" class="submit-btn" id="submitBtn">
-            <span class="btn-text">Send Message</span>
-            <span class="btn-loading" style="display:none;">Sending...</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-          </button>
-
-          <div id="formStatus" role="status" aria-live="polite" style="margin-top:16px;padding:12px 16px;border-radius:8px;font-size:0.95rem;display:none;"></div>
-        </form>
-      </div>
-
-      <div class="contact-info">
-        <h3>Let's Work Together</h3>
-        <p>Whether you're a title company looking for reliable support or have questions about our services, we're here to help.</p>
-
-        <ul class="info-list" style="margin-bottom:0;">
-          <li>
-            <div class="info-icon">
-              <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </div>
-            <div>
-              <strong>Email</strong>
-              <span><a href="mailto:{{ site.email }}">{{ site.email }}</a></span>
-            </div>
-          </li>
-          <li>
-            <div class="info-icon">
-              <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            </div>
-            <div>
-              <strong>Phone</strong>
-              <span><a href="tel:{{ site.phone_e164 }}">{{ site.phone }}</a></span>
-            </div>
-          </li>
-          <li>
-            <div class="info-icon">
-              <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            </div>
-            <div>
-              <strong>Response Time</strong>
-              <span>We typically respond within 24 hours</span>
-            </div>
-          </li>
-          <li>
-            <div class="info-icon">
-              <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            </div>
-            <div>
-              <strong>Free Consultation</strong>
-              <span>No obligations, no commitments</span>
-            </div>
-          </li>
-        </ul>
-      </div>
+{%- comment -%} Full consultation form (contact page). Fields match the contact artboard. {%- endcomment -%}
+<form class="contact-form" id="contact-form" action="{{ site.form_action }}" method="POST" data-jade-form novalidate>
+  <div class="field-row">
+    <div class="field"><label for="cf-first">First name</label><input id="cf-first" name="firstName" type="text" autocomplete="given-name" required></div>
+    <div class="field"><label for="cf-last">Last name</label><input id="cf-last" name="lastName" type="text" autocomplete="family-name" required></div>
+  </div>
+  <div class="field-row">
+    <div class="field"><label for="cf-email">Work email</label><input id="cf-email" name="email" type="email" autocomplete="email" required></div>
+    <div class="field"><label for="cf-company">Company</label><input id="cf-company" name="company" type="text" autocomplete="organization"></div>
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label for="cf-software">Title software</label>
+      <select id="cf-software" name="software" data-label="Title software">
+        <option value="">Select one</option>
+        {%- for s in site.data.software %}<option>{{ s.name }}</option>{% endfor %}
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="cf-service">Service you need</label>
+      <select id="cf-service" name="service">
+        <option value="">Select one</option>
+        {%- for s in site.data.services %}<option value="{{ s.id }}">{{ s.name }}</option>{% endfor %}
+        <option value="multiple">More than one</option>
+      </select>
     </div>
   </div>
-</section>
+  <div class="field-row">
+    <div class="field"><label for="cf-volume">Files per month</label><input id="cf-volume" name="volume" type="text" inputmode="numeric" data-label="Files per month"></div>
+    <div class="field"><label for="cf-phone">Phone (optional)</label><input id="cf-phone" name="phone" type="tel" autocomplete="tel" data-label="Phone"></div>
+  </div>
+  <div class="field"><label for="cf-message">How can we help?</label><textarea id="cf-message" name="message" rows="5" required></textarea></div>
+  <label class="check"><input type="checkbox" name="trial" value="Yes" data-label="Wants a trial of up to 10 files"><span>I would like to start with a trial of up to 10 files.</span></label>
+  <div class="btn-row"><button class="btn btn-primary" type="submit">Send message</button></div>
+  <div data-form-status role="status" tabindex="-1" hidden></div>
+  <p class="lead" style="font-size:15px">We reply within 24 hours. What you send us is confidential.</p>
+</form>
