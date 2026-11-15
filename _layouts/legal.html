@@ -12,7 +12,7 @@ layout: default
 <section class="section bg-white">
   <div class="container" style="max-width:820px">
     <div class="prose">
-      <p><strong>Last updated:</strong> <span class="placeholder">{{ page.updated }}</span></p>
+      <p><strong>Last updated:</strong> {{ page.updated }}</p>
       {%- if page.subtitle %}<p class="lead">{{ page.subtitle }}</p>{% endif %}
 {{ content }}
     </div>

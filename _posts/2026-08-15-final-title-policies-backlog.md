@@ -12,7 +12,6 @@ service: /services/final-policies/
 related: [inside-a-title-commitment, outsourcing-title-production-what-to-hand-off-first]
 sources: []
 seo_title: "How to Clear a Final Title Policy Backlog | Jade"
-launch_date_pending: true
 breadcrumb:
   - name: "Resources"
     url: /resources/

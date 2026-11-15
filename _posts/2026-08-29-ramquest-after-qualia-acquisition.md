@@ -21,7 +21,6 @@ sources:
     url: https://blog.qualia.com/five-takeaways-rqug-conference/
     read_on: 2026-11-15
 seo_title: "RamQuest After the Qualia Acquisition | Jade Title Services"
-launch_date_pending: true
 breadcrumb:
   - name: "Resources"
     url: /resources/

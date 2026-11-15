@@ -18,7 +18,6 @@ sources:
     url: https://blog.softprocorp.com/introducing-hopdox-integration-in-softpro-360
     read_on: 2026-11-15
 seo_title: "SoftPro Title Production With an Outside Team | Jade"
-launch_date_pending: true
 breadcrumb:
   - name: "Resources"
     url: /resources/

@@ -12,7 +12,6 @@ service: /services/
 related: [title-order-entry-checklist, final-title-policies-backlog, inside-a-title-commitment]
 sources: []
 seo_title: "Outsourcing Title Production: What to Hand Off First | Jade"
-launch_date_pending: true
 breadcrumb:
   - name: "Resources"
     url: /resources/

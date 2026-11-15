@@ -15,7 +15,6 @@ sources:
     url: https://blog.qualia.com/introducing-closer/
     read_on: 2026-11-14
 seo_title: "Qualia Closer: What the Pilot Means for Title Teams | Jade"
-launch_date_pending: true
 breadcrumb:
   - name: "Resources"
     url: /resources/

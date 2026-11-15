@@ -12,7 +12,6 @@ service: /services/order-entry/
 related: [inside-a-title-commitment, outsourcing-title-production-what-to-hand-off-first]
 sources: []
 seo_title: "Title Order Entry: A Clean File-Opening Checklist | Jade"
-launch_date_pending: true
 breadcrumb:
   - name: "Resources"
     url: /resources/

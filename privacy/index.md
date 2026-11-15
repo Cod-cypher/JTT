@@ -2,14 +2,10 @@
 layout: legal
 title: "Privacy Policy | Jade Title Services"
 description: "Privacy Policy for jadetitleservices.com, operated by Idea Brothers LLC, doing business as Jade Title Services."
-# Ali is reviewing this text (content/README.md). Keep noindex and the review flag until he confirms.
-legal_review_pending: true
-noindex: true
-sitemap: false
 breadcrumb:
   - name: "Privacy Policy"
 h1: "Privacy Policy"
-updated: "[DATE OF PUBLICATION]"
+updated: "July 13, 2026"
 subtitle: "How we handle information from this website, and how we treat the client files we work on."
 ---
 This policy explains what information Idea Brothers LLC, doing business as Jade Title Services ("Jade", "we", "us"), collects through jadetitleservices.com, how we use it, and the choices you have. It also explains, in plain terms, how we treat the client files we work on.
@@ -95,6 +91,6 @@ We may update this policy. When we do, we will change the date at the top. Signi
 ## 11. Contact us
 
 Idea Brothers LLC, doing business as Jade Title Services
-5532 Big River Drive, The Colony, TX [ZIP CODE]
+5532 Big River Drive, The Colony, TX 75056
 Email: info@jadetitleservices.com
 Phone: (817) 409-8408

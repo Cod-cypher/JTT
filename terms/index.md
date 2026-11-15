@@ -2,14 +2,10 @@
 layout: legal
 title: "Terms of Service | Jade Title Services"
 description: "Terms of Service for jadetitleservices.com, operated by Idea Brothers LLC, doing business as Jade Title Services."
-# Ali is reviewing this text (content/README.md). Keep noindex and the review flag until he confirms.
-legal_review_pending: true
-noindex: true
-sitemap: false
 breadcrumb:
   - name: "Terms of Service"
 h1: "Terms of Service"
-updated: "[DATE OF PUBLICATION]"
+updated: "July 13, 2026"
 ---
 These terms apply to your use of jadetitleservices.com (the "website"), which is operated by Idea Brothers LLC, doing business as Jade Title Services ("Jade", "we", "us"). By using the website, you agree to these terms. If you do not agree, please do not use the website.
 
@@ -74,6 +70,6 @@ These terms are governed by the laws of the State of Texas, United States, witho
 ## 14. Contact us
 
 Idea Brothers LLC, doing business as Jade Title Services
-5532 Big River Drive, The Colony, TX [ZIP CODE]
+5532 Big River Drive, The Colony, TX 75056
 Email: info@jadetitleservices.com
 Phone: (817) 409-8408

@@ -12,7 +12,6 @@ service: /services/title-examination-commitments/
 related: [final-title-policies-backlog, title-order-entry-checklist]
 sources: []
 seo_title: "Inside a Title Commitment: Schedule A, B-I, B-II | Jade"
-launch_date_pending: true
 breadcrumb:
   - name: "Resources"
     url: /resources/

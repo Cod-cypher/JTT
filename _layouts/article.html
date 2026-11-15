@@ -12,12 +12,12 @@ og_type: article
 {%- assign svc = site.data.services | where: "url", page.service | first -%}
 {%- if svc -%}{%- assign svc_name = svc.name -%}{%- else -%}{%- assign svc_name = "Our title production services" -%}{%- endif -%}
 {%- assign sw = site.data.software | where: "id", page.software_id | first -%}
-<section class="page-hero bg-green lattice">
+<section class="article-hero">
   <div class="container">
     {% include breadcrumb.html %}
-    <span class="eyebrow">{{ page.category | upcase }} &middot; {{ page.type | default: "guide" | upcase }}</span>
+    <span class="chip-tag">{{ page.category | upcase }} &middot; {{ page.type | default: "guide" | upcase }}</span>
     <h1>{{ page.title }}</h1>
-    <p class="intro" style="font-size:16px">By <a href="/about/" style="color:#fff">{{ site.founder.name }}</a>, {{ site.founder.job_title }} &middot; <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>{% if page.updated %} &middot; Updated <time datetime="{{ page.updated | date_to_xmlschema }}">{{ page.updated | date: "%B %-d, %Y" }}</time>{% endif %}</p>
+    <p class="byline"><span>By <strong>{{ site.founder.name }}</strong>, {{ site.founder.job_title }}</span><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>{% if page.updated %}<span>Updated <time datetime="{{ page.updated | date_to_xmlschema }}">{{ page.updated | date: "%B %-d, %Y" }}</time></span>{% endif %}</p>
   </div>
 </section>
 
