@@ -1,0 +1,79 @@
+---
+layout: default
+---
+{%- comment -%} Software page template (artboards "Software: ..."). Front matter: software_id. Copy is shared; only the product name changes. {%- endcomment -%}
+{%- assign sw = site.data.software | where: "id", page.software_id | first -%}
+<section class="page-hero bg-green lattice">
+  <div class="container">
+    {% include breadcrumb.html %}
+    <h1>Outsourced title support in {{ sw.name }}</h1>
+    <p class="intro">Order entry, examination and commitments, and final policies, done inside your own {{ sw.name }} account by a team that works in it every day.</p>
+    <div class="btn-row"><a class="btn btn-light" href="/contact/">Get a free consultation</a></div>
+  </div>
+</section>
+
+<section class="bg-white">
+  <div class="container content-layout">
+    <article class="content-main">
+      <div class="block">
+        <h2>What we do in {{ sw.name }}</h2>
+        <ul class="check-list">
+          <li>{% include check.svg.html %}<span><a href="/services/order-entry/"><strong>Order entry</strong></a>: new files opened and set up in {{ sw.name }}.</span></li>
+          <li>{% include check.svg.html %}<span><a href="/services/search-preparation/"><strong>Search preparation</strong></a>: the package organized in the file for your searcher.</span></li>
+          <li>{% include check.svg.html %}<span><a href="/services/title-examination-commitments/"><strong>Examination and commitments</strong></a>: typed in your {{ sw.name }} templates.</span></li>
+          <li>{% include check.svg.html %}<span><a href="/services/final-policies/"><strong>Final policies</strong></a>: prepared in {{ sw.name }} after closing.</span></li>
+        </ul>
+      </div>
+
+      <div class="panel bg-light">
+        <h2>How access works</h2>
+        <p>You add our team as users in your {{ sw.name }} account, with the permissions you choose. We work only inside it. Everything you send us is confidential and handled only by our own team. We work inside your software, so nothing is downloaded, copied out or kept on our side. Files are opened only in your system, or from documents you email us, and every file stays where you can revisit it.</p>
+      </div>
+
+      <div class="panel bg-pale">
+        <h2>Before the first file</h2>
+        <p>You either walk us through how your team works a file, or send us reference commitments and policies. From those we learn your wording and how you show each detail: deeds, mortgages, liens, chain of title, taxes and so on. We ask our questions, draft a standard operating procedure and send it to you. Work starts only once you have approved it.</p>
+      </div>
+
+      <div class="block">
+        <h2>How it works</h2>
+        <ol class="steps">
+          <li><span class="num" aria-hidden="true">01</span><h3>You send the work</h3><p>Through {{ sw.name }}, the way your team already does.</p></li>
+          <li><span class="num" aria-hidden="true">02</span><h3>We do it in {{ sw.name }}</h3><p>Following the SOP you approved.</p></li>
+          <li><span class="num" aria-hidden="true">03</span><h3>Quality check</h3><p>Every order reviewed before it comes back.</p></li>
+          <li><span class="num" aria-hidden="true">04</span><h3>You re-check and close</h3><p>Standard turnaround is 24 hours.</p></li>
+        </ol>
+      </div>
+
+      <div class="block">
+        <h2>{{ sw.name }} questions</h2>
+        {% include faq-list.html items=page.faqs open_first=true %}
+      </div>
+
+      <div class="block">
+        <h2>Related reading</h2>
+        <div class="card-grid">
+          <a class="card" href="/resources/"><h3 class="serif">{{ sw.name }} guides and news</h3><p>Articles for teams working in {{ sw.name }}.</p><span class="card-link">Browse resources</span></a>
+        </div>
+      </div>
+
+      <p class="lead" style="font-size:15px">Jade Title Services is not affiliated with, endorsed by or a partner of {{ sw.name }}. {{ sw.name }} is a trademark of its owner.</p>
+    </article>
+
+    <aside class="content-aside" aria-label="Consultation and related pages">
+      {% include consult-box.html %}
+      <nav class="aside-box" aria-label="Software">
+        <span class="label">Software</span>
+        {%- for s in site.data.software %}
+        {%- if s.id == page.software_id %}<span aria-current="page">{{ s.name }}</span>{% else %}<a href="{{ s.url }}">{{ s.name }}</a>{% endif %}
+        {%- endfor %}
+      </nav>
+      <nav class="aside-box" aria-label="Services">
+        <span class="label">Services</span>
+        {%- for s in site.data.services %}<a href="{{ s.url }}">{{ s.name }}</a>{% endfor %}
+      </nav>
+    </aside>
+  </div>
+</section>
+
+{% include cta.html %}

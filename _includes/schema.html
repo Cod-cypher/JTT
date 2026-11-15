@@ -88,6 +88,21 @@
       ]
     }
     {%- endif -%}
+    {%- if page.layout == "article" -%}
+    ,
+    {
+      "@type": "Article",
+      "@id": "{{ canonical }}#article",
+      "headline": {{ page.title | jsonify }},
+      "description": {{ page_desc | jsonify }},
+      "datePublished": "{{ page.date | date_to_xmlschema }}",
+      "dateModified": "{{ page.updated | default: page.date | date_to_xmlschema }}",
+      "author": { "@id": "{{ home }}#founder" },
+      "publisher": { "@id": "{{ home }}#organization" },
+      "mainEntityOfPage": { "@id": "{{ canonical }}#webpage" },
+      "image": "{{ page.og_image | default: site.og_default | absolute_url }}"
+    }
+    {%- endif -%}
     {%- if page.faqs -%}
     ,
     {

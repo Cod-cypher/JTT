@@ -1,0 +1,39 @@
+---
+title: "Who We Serve: Title Companies, Attorneys, Lenders | Jade"
+description: "Back-office title production support for U.S. title companies, real estate attorneys and lenders. We type the file; you re-check it and close."
+page_type: CollectionPage
+breadcrumb:
+  - name: "Who we serve"
+cards:
+  - { url: /who-we-serve/title-companies/, desc: "Extra production capacity for busy weeks, without adding headcount or retraining staff.", link: "Support for title companies" }
+  - { url: /who-we-serve/real-estate-attorneys/, desc: "Typing and policy work handled for closing practices with a small support team.", link: "Support for attorneys" }
+  - { url: /who-we-serve/lenders/, desc: "Steady turnaround on title production tasks that sit between application and closing.", link: "Support for lenders" }
+---
+<section class="page-hero bg-green lattice">
+  <div class="container">
+    {% include breadcrumb.html %}
+    <h1>Title production support for the people who close the file</h1>
+    <p class="intro">Jade is an offshore back-office team for U.S. title companies, real estate attorneys and lenders. We type the file. You re-check it and close.</p>
+    <div class="btn-row"><a class="btn btn-light" href="/contact/">Get a free consultation</a></div>
+  </div>
+</section>
+
+<section class="section bg-light">
+  <div class="container">
+    <div class="card-grid card-grid--wide">
+      {%- for c in page.cards %}
+      {%- assign a = site.data.audiences | where: "url", c.url | first %}
+      <a class="card" href="{{ c.url }}"><h2 class="serif" style="font-size:28px">{{ a.name }}</h2><p>{{ c.desc }}</p><span class="card-link">{{ c.link }}</span></a>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section bg-pale">
+  <div class="container section-head">
+    <h2 class="h2">Our goal for every client</h2>
+    <p class="lead">We type everything so your team only has to re-check it. You review our work before it goes out, then get back to closings and client relationships.</p>
+  </div>
+</section>
+
+{% include cta.html %}

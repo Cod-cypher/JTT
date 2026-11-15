@@ -35,6 +35,11 @@ defaults:
   - scope: { path: "" }
     values:
       layout: default
+  - scope: { path: "", type: posts }
+    values:
+      layout: article
+      permalink: /resources/:title/
+      og_image: /assets/og/company.png
   - scope: { path: "services" }
     values:
       og_image: /assets/og/services.png

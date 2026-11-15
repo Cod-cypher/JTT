@@ -1,0 +1,52 @@
+---
+title: "Title Production Guides & News | Jade Title Services"
+description: "Practical guides and news for title production teams: commitments, final policies, order entry, outsourcing, and Qualia, SoftPro and RamQuest."
+page_type: CollectionPage
+breadcrumb:
+  - name: "Resources"
+categories: [Commitments, Final policies, Order entry, Outsourcing, Qualia, SoftPro, RamQuest, Compliance]
+---
+<section class="page-hero bg-green lattice">
+  <div class="container">
+    {% include breadcrumb.html %}
+    <h1>Guides and news for title production teams</h1>
+    <p class="intro">Practical articles on commitments, final policies, order entry and the software you work in.</p>
+  </div>
+</section>
+
+<section class="section bg-light">
+  <div class="container stack-lg">
+    {%- if site.posts.size > 0 %}
+    {%- assign featured = site.posts | first %}
+    <a class="card" href="{{ featured.url }}" style="padding:40px">
+      <span class="eyebrow">Featured &middot; {{ featured.category }}</span>
+      <h2 class="h2">{{ featured.title }}</h2>
+      <p style="font-size:17px">{{ featured.description }}</p>
+      <span class="card-link">Read the article</span>
+    </a>
+
+    <div class="chips" role="group" aria-label="Filter by category">
+      <button class="chip" type="button" aria-pressed="true" data-filter="all">All</button>
+      {%- for c in page.categories %}<button class="chip" type="button" aria-pressed="false" data-filter="{{ c | slugify }}">{{ c }}</button>{% endfor %}
+    </div>
+
+    <div class="card-grid card-grid--wide" id="article-list">
+      {%- for p in site.posts %}
+      <a class="card article-card" href="{{ p.url }}" data-category="{{ p.category | slugify }}">
+        <span class="eyebrow">{{ p.category }}</span>
+        <h2 class="serif" style="font-size:22px;line-height:1.3">{{ p.title }}</h2>
+        <p><time datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%B %-d, %Y" }}</time></p>
+        <span class="card-link">Read the {% if p.kind == "News" %}article{% else %}guide{% endif %}</span>
+      </a>
+      {%- endfor %}
+    </div>
+    {%- else %}
+    <div class="panel bg-pale" style="border-radius:10px;padding:40px">
+      <h2 class="h2">Articles are on the way</h2>
+      <p class="lead">Our first guides for title production teams are being written. In the meantime, see <a class="text-link" href="/services/">our services</a> or <a class="text-link" href="/contact/">ask us a question</a>.</p>
+    </div>
+    {%- endif %}
+  </div>
+</section>
+
+{% include cta.html %}

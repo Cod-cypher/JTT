@@ -1,0 +1,71 @@
+---
+title: "Pricing: From $5 per File | Jade Title Services"
+description: "Per-file pricing for outsourced title support, as low as $5 per file depending on monthly volume. Start with a free trial of up to 10 files."
+breadcrumb:
+  - name: "Pricing"
+faqs:
+  - q: "Is there a minimum volume?"
+    a: "<span class=\"placeholder\">[CONFIRM: state your minimum, or say there is none]</span>"
+  - q: "How are we billed?"
+    a: "<span class=\"placeholder\">[CONFIRM: billing cycle and payment method]</span>"
+  - q: "Is the consultation free?"
+    a: "Yes. The first consultation is free."
+  - q: "Is the trial free?"
+    a: "Yes. You can start with a free trial of up to 10 files before you commit to anything."
+---
+<section class="page-hero bg-green lattice">
+  <div class="container">
+    {% include breadcrumb.html %}
+    <h1>Pricing as low as $5 per file</h1>
+    <p class="intro">You pay per file, and the rate depends on your monthly volume. <span class="placeholder">[CONFIRM: "No setup fee is charged for learning your process."]</span></p>
+    <div class="btn-row">
+      <a class="btn btn-light" href="/contact/">Get your rate</a>
+      <a class="btn btn-outline-light" href="tel:{{ site.phone_e164 }}">Call {{ site.phone }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-light">
+  <div class="container stack-lg">
+    <div class="section-head">
+      <span class="eyebrow">How your rate is set</span>
+      <h2 class="h2">Two things decide the price</h2>
+    </div>
+    <div class="card-grid card-grid--wide">
+      <div class="info-card"><span class="steps"><span class="num">01</span></span><h3>Which service</h3><p>Order entry, search preparation, examination and commitments, or final policies. <span class="placeholder">[ADD A PER-SERVICE STARTING PRICE HERE IF YOU WANT TO PUBLISH ONE]</span></p></div>
+      <div class="info-card"><span class="steps"><span class="num">02</span></span><h3>Your monthly volume</h3><p>The more files you send each month, the lower the rate per file, down to $5.</p></div>
+      <div class="info-card" style="background:var(--green);color:#fff;border-color:var(--green)"><h3>Your quote within 24 hours</h3><p style="color:var(--on-green)">Tell us your volume and software and we will send a per-file rate.</p><a class="btn btn-dark" href="/contact/" style="align-self:flex-start">Get your rate</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-white">
+  <div class="container split">
+    <div class="split-side">
+      <h2 class="h2">Included in every file</h2>
+    </div>
+    <ul class="split-main check-list">
+      <li>{% include check.svg.html %}<span>An SOP you approved, written before the first file.</span></li>
+      <li>{% include check.svg.html %}<span>A quality check before the file comes back.</span></li>
+      <li>{% include check.svg.html %}<span>24-hour standard turnaround, with evenings and weekends.</span></li>
+      <li>{% include check.svg.html %}<span>Work inside your software, with nothing taken out or kept.</span></li>
+      <li>{% include check.svg.html %}<span>100% satisfaction guarantee.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section bg-pale">
+  <div class="container section-head">
+    <h2 class="h2">Start with a free trial</h2>
+    <p class="lead">Send us up to 10 files, free of charge, and see how they come back before you commit to anything.</p>
+  </div>
+</section>
+
+<section class="section bg-light">
+  <div class="container split">
+    <div class="split-side"><h2 class="h2">Pricing questions</h2></div>
+    <div class="split-main">{% include faq-list.html items=page.faqs open_first=true %}</div>
+  </div>
+</section>
+
+{% include cta.html %}

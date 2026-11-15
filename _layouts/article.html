@@ -1,0 +1,75 @@
+---
+layout: default
+og_type: article
+---
+{%- comment -%}
+  Article template (artboard "Resources: article page"). Front matter per post:
+  title (H1), seo_title, description, category, kind (News/Guide), date, updated,
+  toc: [{id, label}], summary: [..], sources: [{label, url, read}], related_services: [ids],
+  software_id (optional), keep_reading: [{url, title, desc}].
+  Every fact must come from a source opened on the day of writing (PLAN.md 3b).
+{%- endcomment -%}
+<section class="page-hero bg-green lattice">
+  <div class="container">
+    {% include breadcrumb.html %}
+    <span class="eyebrow">{{ page.category | upcase }}{% if page.kind %} &middot; {{ page.kind | upcase }}{% endif %}</span>
+    <h1>{{ page.title }}</h1>
+    <p class="intro" style="font-size:16px">By <a href="/about/" style="color:#fff">{{ site.founder.name }}</a> &middot; <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>{% if page.updated %} &middot; Updated <time datetime="{{ page.updated | date_to_xmlschema }}">{{ page.updated | date: "%B %-d, %Y" }}</time>{% endif %}</p>
+  </div>
+</section>
+
+<section class="bg-white">
+  <div class="container content-layout">
+    <article class="content-main">
+      {%- if page.summary %}
+      <div class="panel bg-pale">
+        <span class="eyebrow">In short</span>
+        <ul class="prose" style="color:var(--muted-on-pale)">{% for s in page.summary %}<li>{{ s }}</li>{% endfor %}</ul>
+      </div>
+      {%- endif %}
+
+      <div class="prose">
+{{ content }}
+      </div>
+
+      {%- if page.sources %}
+      <p class="lead" style="font-size:15px">Sources: {% for s in page.sources %}<a href="{{ s.url }}" rel="noopener" target="_blank">{{ s.label }}</a>{% if s.read %}, read {{ s.read }}{% endif %}{% unless forloop.last %}; {% endunless %}{% endfor %}.{% if page.software_id %}{% assign sw = site.data.software | where: "id", page.software_id | first %} Jade Title Services is not affiliated with {{ sw.name }}. {{ sw.name }} is a trademark of its owner.{% endif %}</p>
+      {%- endif %}
+
+      <div class="aside-box" style="flex-direction:row;gap:20px;align-items:center">
+        <span class="placeholder" style="flex:none;width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px">[PHOTO]</span>
+        <span><strong>{{ site.founder.name }}</strong><br><span class="lead" style="font-size:15px">{{ site.founder.job_title }} at Jade Title Services. In title support for U.S. title companies since 2019.</span></span>
+      </div>
+
+      {%- if page.keep_reading %}
+      <div class="block">
+        <h2>Keep reading</h2>
+        <div class="card-grid">
+          {%- for r in page.keep_reading %}
+          <a class="card" href="{{ r.url }}"><h3 class="serif">{{ r.title }}</h3><p>{{ r.desc }}</p><span class="card-link">Read the guide</span></a>
+          {%- endfor %}
+        </div>
+      </div>
+      {%- endif %}
+    </article>
+
+    <aside class="content-aside" aria-label="Article navigation and consultation">
+      {%- if page.toc %}
+      <nav class="aside-box" aria-label="In this article">
+        <span class="label">In this article</span>
+        {%- for t in page.toc %}<a href="#{{ t.id }}">{{ t.label }}</a>{% endfor %}
+      </nav>
+      {%- endif %}
+      {% include consult-box.html %}
+      {%- if page.related_services or page.software_id %}
+      <nav class="aside-box" aria-label="Related services">
+        <span class="label">Related services</span>
+        {%- for id in page.related_services %}{% assign s = site.data.services | where: "id", id | first %}<a href="{{ s.url }}">{{ s.name }}</a>{% endfor %}
+        {%- if page.software_id %}{% assign sw = site.data.software | where: "id", page.software_id | first %}<a href="{{ sw.url }}">{{ sw.footer }}</a>{% endif %}
+      </nav>
+      {%- endif %}
+    </aside>
+  </div>
+</section>
+
+{% include cta.html %}

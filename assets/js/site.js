@@ -30,6 +30,18 @@
     track(a.href.indexOf('tel:') === 0 ? 'phone_click' : 'email_click', { link_url: a.href, page_path: location.pathname });
   });
 
+  // ---------- Resources category filter ----------
+  var chips = document.querySelectorAll('.chip[data-filter]');
+  Array.prototype.forEach.call(chips, function (chip) {
+    chip.addEventListener('click', function () {
+      var f = chip.getAttribute('data-filter');
+      Array.prototype.forEach.call(chips, function (c) { c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'); });
+      Array.prototype.forEach.call(document.querySelectorAll('.article-card'), function (card) {
+        card.hidden = f !== 'all' && card.getAttribute('data-category') !== f;
+      });
+    });
+  });
+
   // ---------- Forms ----------
   // All forms post to the existing Google Apps Script, which expects:
   // firstName, lastName, email, company, service, message, timestamp.

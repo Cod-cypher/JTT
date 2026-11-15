@@ -1,0 +1,43 @@
+---
+title: "Title Software Support: Qualia, SoftPro, RamQuest | Jade"
+description: "We work inside the title software you already use: Qualia, SoftPro and RamQuest. No migration, no new portal, and nothing taken out of your system."
+page_type: CollectionPage
+breadcrumb:
+  - name: "Software"
+cards:
+  qualia: "Order entry, commitments and policies completed in your Qualia files."
+  softpro: "Typing and policy work in SoftPro, using your document templates."
+  ramquest: "File setup and production tasks handled directly in RamQuest."
+---
+<section class="page-hero bg-green lattice">
+  <div class="container">
+    {% include breadcrumb.html %}
+    <h1>We work inside the title software you already use</h1>
+    <p class="intro">No migration and no new portal. You give our team access, and the work is done in your own Qualia, SoftPro or RamQuest files.</p>
+    <div class="btn-row"><a class="btn btn-light" href="/contact/">Get a free consultation</a></div>
+  </div>
+</section>
+
+<section class="section bg-light">
+  <div class="container stack-lg">
+    <div class="card-grid card-grid--wide">
+      {%- for s in site.data.software %}
+      <a class="card" href="{{ s.url }}"><h2 class="serif" style="font-size:28px">{{ s.name }}</h2><p>{{ page.cards[s.id] }}</p><span class="card-link">{{ s.name }} title support</span></a>
+      {%- endfor %}
+    </div>
+    <p class="lead">Using another system? <a class="text-link" href="/contact/">Ask us</a>.</p>
+  </div>
+</section>
+
+<section class="section bg-white">
+  <div class="container stack">
+    <div class="section-head">
+      <span class="eyebrow">Your files</span>
+      <h2 class="h2">Your files never leave your system</h2>
+      <p class="lead">Everything you send us is confidential and handled only by our own team. We work inside your software, so nothing is downloaded, copied out or kept on our side. Files are opened only in your system, or from documents you email us, and every file stays where you can revisit it.</p>
+      <p class="lead" style="font-size:15px">Jade Title Services is an independent company and is not affiliated with, endorsed by or a partner of Qualia, SoftPro or RamQuest.</p>
+    </div>
+  </div>
+</section>
+
+{% include cta.html %}
