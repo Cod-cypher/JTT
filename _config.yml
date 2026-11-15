@@ -19,6 +19,11 @@ email: info@jadetitleservices.com
 legal_name: Idea Brothers LLC
 mailing_address: "5532 Big River Drive, The Colony, TX 75056"
 founded: "2019"
+social:
+  - name: LinkedIn
+    url: https://www.linkedin.com/company/jade-title-services
+  - name: Facebook
+    url: https://www.facebook.com/profile.php?id=61595841234549
 form_action: https://script.google.com/macros/s/AKfycbxDcGL8gcoI9Pdr-04h3cvCEnSmGR67wY8QXQ2aRGw-Zp1tl1HcHU1IhNaNQrQ5b4S7/exec
 ga_id: G-N9HZD2ZLJJ
 # Search engine site verification (Phase 4)

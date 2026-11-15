@@ -11,6 +11,15 @@
         <p>Offshore title production support for U.S. title companies, attorneys and lenders.</p>
         <a class="footer-phone" href="tel:{{ site.phone_e164 }}">{{ site.phone }}</a>
         <a class="footer-email" href="mailto:{{ site.email }}">{{ site.email }}</a>
+        <div class="footer-social">
+          {%- for s in site.social %}
+          <a href="{{ s.url }}" target="_blank" rel="noopener" aria-label="Jade Title Services on {{ s.name }} (opens in a new tab)">
+            {%- if s.name == "LinkedIn" %}<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11.75H3zM9.5 9.75h3.83v1.6h.05c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.67 4.8 6.13v6.08h-4v-5.39c0-1.29-.02-2.94-1.79-2.94-1.8 0-2.07 1.4-2.07 2.85v5.48h-4z"/></svg>
+            {%- else %}<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 21.5v-8h2.7l.4-3.2h-3.1V8.3c0-.9.26-1.55 1.57-1.55h1.67V3.9c-.29-.04-1.28-.12-2.43-.12-2.4 0-4.05 1.47-4.05 4.17v2.35H7.6v3.2h2.66v8z"/></svg>
+            {%- endif %}
+          </a>
+          {%- endfor %}
+        </div>
       </div>
       {%- for col in site.data.nav.footer %}
       {%- if col.data %}{% assign items = site.data[col.data] %}{% else %}{% assign items = col.links %}{% endif %}
