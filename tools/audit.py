@@ -15,7 +15,12 @@ import sys
 sys.stdout.reconfigure(encoding='utf-8')
 SITE = sys.argv[1] if len(sys.argv) > 1 else '_site'
 # Reviewed uses that are allowed: they describe a vendor's product or say Jade does NOT do escrow.
-REVIEWED = ['title and escrow file', 'title and escrow services', 'escrow or settlement agent', 'Escrow, disbursement and the closing table are yours', 'no access to escrow accounting']
+REVIEWED = ['title and escrow file', 'title and escrow services', 'escrow or settlement agent', 'Escrow, disbursement and the closing table are yours', 'no access to escrow accounting',
+            # Title and description of the escrow explainer, shown wherever the article is listed
+            'Real Estate Title and Escrow: What Each Does in a Closing',
+            'Title and escrow are named together but do different jobs.']
+# Pages whose topic is title vs escrow; reviewed by hand: they explain escrow but say Jade does not offer it.
+ESCROW_EXPLAINERS = ['/resources/real-estate-title-and-escrow/']
 FORBIDDEN = [r'\bescrow\b', r'E&O|E&amp;O', r'ALTA member', r'\d+\s?% accura', r'accuracy rate', r'certified']
 
 pages, problems, placeholders = {}, [], []
@@ -57,6 +62,8 @@ for url, s in sorted(pages.items()):
     for r in REVIEWED:
         reviewed_text = reviewed_text.replace(r, '')
     for pat in FORBIDDEN:
+        if pat == r'\bescrow\b' and url in ESCROW_EXPLAINERS:
+            continue
         for m in re.finditer(pat, reviewed_text, re.I):
             problems.append(f'{url}: forbidden term "{m.group(0)}"')
 
